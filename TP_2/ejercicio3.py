@@ -14,4 +14,4 @@ a = crearListaCuadrados(20)
 print(a)
 
 for i in range(a[-1], a[-10]):
-    print(a[i], sep=",")
+    print(a[i], sep=",")#falta terminar 
