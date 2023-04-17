@@ -13,5 +13,6 @@ def crearListaCuadrados(n):
 a = crearListaCuadrados(20)
 print(a)
 
-for i in range(a[-1], a[-10]):
-    print(a[i], sep=",")#falta terminar 
+for x in range(len(a)):
+    print(a[x], end="  ")#falta terminar
+    
