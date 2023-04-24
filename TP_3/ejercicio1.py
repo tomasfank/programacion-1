@@ -59,6 +59,23 @@ def intercambiarColumnas(matriz, col1, col2):
     """ la función permite intercambiar dos columnas de la matriz """
     for fila in matriz:
         fila[col1], fila[col2] = fila[col2], fila[col1]
+        
+def transponerMatriz(matriz):
+    """ la función transpone la matriz sobre si misma """
+    for i in range(len(matriz)):
+        for j in range(i, len(matriz)):
+            x = matriz[i][j]
+            matriz[i][j] = matriz[j][i]
+            matriz[j][i] = x
+            
+def calcularPromedio(matriz, prom):
+    """ la función calcula el promedio de los valores de una fila """
+    suma = sum(matriz[prom])
+    cant = len(matriz[prom])
+    promedio = suma / cant
+    return promedio
+            
+    
 
 
 #programa 
@@ -66,18 +83,38 @@ a = crearMatriz(4,4)
 rellenarMatriz(a)
 print("matriz desordenada")
 imprimirMatriz(a)
+print()
+
 #ordenamos las filas de forma ascendente
 print("filas ordenadas en forma ascendente")
 ordenarAscendente(a)
 imprimirMatriz(a)
+print()
+
 #intercambio de filas
 print("intercambiamos filas")
 intercambiarFilas(a, 1, 3)
 imprimirMatriz(a)
+print()
+
 #intercambio de columnas
 print("intercambiamos columnas")
 intercambiarColumnas(a, 0, 3)
 imprimirMatriz(a)
+print()
 
-#falta desde el punto e) en adelante
+#transponer matriz
+print("Transponer matriz")
+transponerMatriz(a)
+imprimirMatriz(a)
+print()
+
+#calcular promedio de una fila
+promedio = int(input("De que fila desea calcular el promedio? "))
+print("el promedio de la fila seleccionada es", calcularPromedio(a, promedio))
+print()
+
+#falta de g en adelante
+
+
 
