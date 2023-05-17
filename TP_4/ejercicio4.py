@@ -2,7 +2,4 @@
 en un número romano, devolviéndolo en una cadena de caracteres. ¿En qué cambiaría la función si
 el rango de valores fuese diferente? """
 
-def convertirRomano(numero):
-    
-    #no terminado
-    
+
