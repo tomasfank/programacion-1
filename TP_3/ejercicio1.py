@@ -74,7 +74,15 @@ def calcularPromedio(matriz, prom):
     cant = len(matriz[prom])
     promedio = suma / cant
     return promedio
-            
+
+def elementos_de_columna(matriz, columna):
+    """ devuelve todos los elementos de una columna seleccionada """
+    elementos = []
+    cant = len(matriz[columna])
+    for i in range(cant):
+        elementos.append(matriz[i][columna])
+    return elementos
+    
     
 
 
@@ -114,7 +122,17 @@ promedio = int(input("De que fila desea calcular el promedio? "))
 print("el promedio de la fila seleccionada es", calcularPromedio(a, promedio))
 print()
 
-#falta de g en adelante
+#calcular el porcentaje de números impares en una columna 
+elegir_columna = int(input("De que columna desea calcular el porcentaje de impares?"))
+elems = elementos_de_columna(a, elegir_columna) 
+impares = 0
+for x in elems:
+    if x % 2 != 0:
+        impares += 1
+sacar_porcentaje = (100 * (impares / len(elems)))
+print(f"{sacar_porcentaje}%")
+
+#falta del h en adelante
 
 
 
