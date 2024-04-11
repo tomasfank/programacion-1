@@ -33,12 +33,12 @@ def matrizB(tam):
     matriz = [[0]* tam for i in range(tam)]
     filas = len(matriz)
     columnas = len(matriz[0])
-    x = 1 
+    x = 3**(len(matriz)-1) 
     for i in range(filas):
         for j in range(columnas):
             if i + j == (len(matriz)-1):
                 matriz[i][j] = x
-                x *= 3
+                x //= 3
     return matriz
 
 def matriz_con_escalera(n):

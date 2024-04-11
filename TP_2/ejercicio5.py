@@ -3,21 +3,18 @@ ordenada en forma ascendente o False en caso contrario. Por ejemplo,  ordenada([
 True y ordenada(['b','a']) retorna False. Desarrollar además un programa para verificar el
 comportamiento de la función """
 
-def listaOrdenada(lista):
-    """ la función recibe una lista (ordenada o desordenada), la ordena en forma ascendente y compara si la lista que ordenó es igual a la que recibió """  
-    ordenada = False
-    nuevaLista = sorted(lista) 
-    if nuevaLista == lista:
-        ordenada = True
-    return ordenada
+# Funciones
+def estaOrdenada(lista):
+    for i in range(1,len(lista)):
+        if lista[i] < lista[i-1]:
+            return False
+    return True
 
+# Programa 
+lista1 = [1,2,3,4,5,6,7,8,9]
+lista2 = [1,3,2,4,5,7,6,8,9]
+lista3 = [1,1,2,3,4,5,6,7,8]
 
-#valores de prueba 
-a = [1,2,3,4]
-b = ["a", "b", "c"]
-c = [4,3,2,1]
-d = ["c","b","a"]
-
-#programa de prueba
-inicio = listaOrdenada(d)
-print(inicio)
+print(estaOrdenada(lista1))
+print(estaOrdenada(lista2))
+print(estaOrdenada(lista3))

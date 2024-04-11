@@ -14,27 +14,44 @@ su funcionamiento imprimiendo la lista luego de invocar a cada función:
 
 import random
 
-def  numerosAzar(n):
-    lista = []
-    for x in range(n):
-        lista.append(random.randint(1000, 9999))
-    return lista
-
+# Funciones
+def cargaLista(lista):
+    for i in range(random.randint(10,99)):
+        lista.append(random.randint(1000,9999))
+    
 def sumatoria(lista):
-    sumatoria = 0
-    for x in range(len(lista)):
-        sumatoria += lista[x]
-    return sumatoria
+    sumar = sum(lista)
+    return sumar
 
-def eliminarNumero(lista, borrar):
-    while borrar in lista:
-        lista.remove(borrar)
-    return lista
-        
+def eliminaElemento(lista, elemento):
+    while elemento in lista:
+            lista.remove(elemento)
 
-a = numerosAzar(5)
-print(a)
-b = sumatoria(a)
-print(b)
-c = eliminarNumero(a, 3245)
-print(c)
+def capicua(lista):
+    izq, der = 0,  len(lista) - 1
+    while izq < der:
+        if lista[izq] != lista[der]:
+            return False
+        izq += 1
+        der -= 1
+    return True
+ 
+
+ # Ejecución 
+lista = []
+
+# a
+cargaLista(lista)
+print(lista)
+
+# b
+print(sumatoria(lista))
+
+# c
+eliminaElemento(lista, int(input("¿Qué elemento desea eliminar? = ")))
+print(lista)
+
+# d
+lista1 =  [50, 17, 91, 17, 50] # Datos de prueba
+print(capicua(lista1))
+    

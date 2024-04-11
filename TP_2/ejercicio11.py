@@ -14,41 +14,43 @@ ingresa -1 como número de socio. Luego se solicita:
     de afiliado
 """
 
-#funciones
-def pacientesAtendidos(turno, urgencia):
-    atendiendo = True
-    while atendiendo == True:
-        afiliado = int(input("Ingrese el número de afiliado o -1 para finalizar: "))
-        if afiliado == -1:
-            atendiendo = False
-        else:
-            tipo_atencion = int(input("¿Viene con turno (1) o por una urgencia (0): "))
-            if tipo_atencion == 1:
-                turno.append(afiliado)
-                print("Atendidos con turno = ", turno)
-            elif tipo_atencion == 0:
-                urgencia.append(afiliado)
-                print("Atendidos por urgencia = ", urgencia)
-    print("Pacientes atendidos por una urgencia = ", urgencia)
-    print("Pacientes atendidos por turno = ", turno)
-    return turno, urgencia 
+# Funciones
+def ingresaPaciente(afiliados, urgencias):
+    while True:
+        nroAfiliado = int(input("Ingrese su número de afiliado = "))
+        if (9999 < nroAfiliado or nroAfiliado < 999):
+            if nroAfiliado != -1:
+                print("El número de afiliado debe ser de 4 caracteres")
+                continue
+            else:
+                print("Carga terminada. Gracias!")
+                break
+        tipoAtencion = int(input("Ingrese 0 si se trata de una urgencia o de lo contrario ingrese 1 = "))
+        afiliados.append(nroAfiliado)
+        urgencias.append(tipoAtencion)
+        print("Gracias!... Para continuar ingrese el número del siguiente afiliado o '-1' para terminar")
 
-def busquedaPaciente(turno, urgencia):
-    busqueda = True 
-    while busqueda == True: 
-        num_afiliado = int(input("Ingrese el número de afiliado que desea buscar (o -1 para finalizar)"))
-        if num_afiliado == -1:
-            busqueda = False
+
+def imprimirListado(afiliados, urgencias):
+    for i in range(len(afiliados)):
+        if urgencias[i] == 0:
+            print(f"Afiliado = {afiliados[i]} - Tipo de atención = Urgencia.")
+        else:
+            print(f"Afiliado = {afiliados[i]} - Tipo de atención = Consulta con turno.")
+
+def buscarPaciente(afiliados, urgencias):
+    while True:
+        paciente = int(input("Ingrese el número de afiliado que desea consultar o '-1' para terminar = "))
+        if paciente != -1:
+            vecesAtendido = [urgencias[x] for x in range(len(afiliados)) if afiliados[x] == paciente]
+            print(f"El paciente {paciente} fue atendido {len(vecesAtendido)} veces.")
+        else:
+            print("Programa finalizado.")
             break
-        else:
-            atendidoUrgencia = urgencia.count(num_afiliado)
-            atendidoTurno = turno.count(num_afiliado)
-        print("El paciente", num_afiliado, "fue atendido", atendidoTurno, "veces por turno, y", atendidoUrgencia, "veces por urgencia.")
-        
-#listas necesarias   
-lista_de_turno = []
-lista_de_urgencia = []
 
-#programa
-lista_de_turno, lista_de_urgencia = pacientesAtendidos(lista_de_turno, lista_de_urgencia)
-busquedaPaciente(lista_de_turno, lista_de_urgencia)
+# Programa 
+afiliados = []
+tipoAtencion = []
+ingresaPaciente(afiliados, tipoAtencion)
+imprimirListado(afiliados, tipoAtencion)
+buscarPaciente(afiliados, tipoAtencion)

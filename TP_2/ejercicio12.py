@@ -12,41 +12,52 @@ el número de socio de cinco digitos hasta ingresar un cero como fin de carga. S
     ingresos se eliminaron.     
 """
 
-#funciones
-def informeIngresos(ingresos):
-    carga_datos = True
-    while carga_datos == True:
-        num_socio = int(input("Ingrese el número de socio que desea ingresar al club = "))
-        if num_socio == 0:
-            carga_datos = False
-        else:
-            while num_socio < 9999 or num_socio > 100000:
-                num_socio = int(input("El número de socio debe contener 5 carácteres. Ingrese el número de socio que desea ingresar al club = "))
-                if num_socio == 0:
-                    carga_datos = False
-                    break
-            else:
-                ingresos.append(num_socio)
-    return ingresos
+# Funciones
+def ingresar(ingresos, socios, nroSocio):
+    if nroSocio not in socios: # No hay registros de ingreso
+        socios.append(nroSocio)
+        ingresos.append(1)
+    else: # Hay almenos un registro
+        i = socios.index(nroSocio)
+        ingresos[i] = ingresos[i] + 1
 
-def imprimirInforme(lista):
-    lista_aux = []
-    for socio in lista:
-        if socio not in lista_aux:
-            print("El socio", socio, "ingreso", lista.count(socio), "veces")
-        lista_aux.append(socio)
+def imprimirIngresos(socios, ingresos):
+    print("Cantidad de ingresos por socio = ")
+    for i in range(len(socios)):
+        print(f"+ Socio N° {socios[i]} = {ingresos[i]}")
         
-def darBajaSocio(lista):
-    baja_socio = int(input("¿Que socio desea darse de baja? = "))
-    nueva_lista = [socio for socio in lista if baja_socio != socio]
-    print("Se dío de baja al socio nro =", baja_socio)
-    return nueva_lista
-    
-#listas
-ingreso_socios = []
+def eliminarSocio(socios, ingresos, nroSocio):
+    if nroSocio in socios:
+        i = socios.index(nroSocio)
+        cant = ingresos[i]
+        socios.pop(i)
+        ingresos.pop(i)
+        print(f"El socio {nroSocio} tenía {cant} ingresos")
+    else:
+        print(f"No hay ningun socio {nroSocio} en la lista.")
 
-#programa 
-informeIngresos(ingreso_socios)
-imprimirInforme(ingreso_socios)
-bajas = darBajaSocio(ingreso_socios)
-imprimirInforme(bajas)
+
+# Programa
+socios = []
+ingresos = []
+
+while True:
+    nroSocio = int(input("Ingrese el número del socio que desea entrar en el predio ó -1 para terminar = "))
+    if nroSocio != -1:
+        if nroSocio < 10000 or nroSocio > 99999:
+            print("El número de socio debe ser un número de 5 dígitos.")
+            continue
+        else:
+            ingresar(ingresos, socios, nroSocio)
+    else:
+        break
+
+imprimirIngresos(socios, ingresos)
+
+while True:
+    eliminar = int(input("Ingrese el número de socio a dar de baja ó -1 para terminar = "))
+    eliminarSocio(socios, ingresos, eliminar)
+    if eliminar == -1:
+        break
+
+imprimirIngresos(socios, ingresos)

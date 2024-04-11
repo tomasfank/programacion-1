@@ -10,42 +10,34 @@
     
 Combinar estas tres funciones en un mismo programa """
 
-import random 
+import random
 
-def numerosAzar(x):
-    lista = []
-    for i in range(x):
-        lista.append(random.randint(1, 100))
-    return lista
+# Funciones
+def generarLista(lista):
+    for i in range(50):
+        lista.append(random.randint(1,100))
 
-def repetidos(lista):
-    r = False
-    for x in range(len(lista)):
-        if lista.count(lista[x]) > 1:
-            r = True
-    return r
-
-def sinRepetidos(lista):
-    listaNueva = []
+def tieneRepetidos(lista):
+    aux = []
     for i in range(len(lista)):
-        if lista[i] not in listaNueva:
-            listaNueva.append(lista[i])
-    return listaNueva
+        if lista[i] in aux:
+            return True
+        aux.append(lista[i])
+    return False
 
-#programa principal
-a = numerosAzar(50)
-print(a)
-b = repetidos(a)
-if b == True:
-    print("La lista contiene elementos repetidos")
-    c = sinRepetidos(a)
-    print(c)
-    #para facilitar el análisis imprimo las listas nuevamente, pero de manera ordenada
-    print()
-    a.sort()
-    c.sort()
-    print(a) 
-    print(c)
-else:
-    print("La lista no contiene elementos repetidos")
+def elementosUnicos(lista):
+    aux = []
+    for i in range(len(lista)):
+        if lista[i] not in aux:
+            aux.append(lista[i])
+    return aux
 
+# Programa
+lista = []
+generarLista(lista)
+print(lista)
+
+print(tieneRepetidos(lista))
+
+listaUnica = elementosUnicos(lista)
+print(listaUnica)

@@ -1,8 +1,4 @@
-""" Una persona desea llevar el control de los gastos realizados al viajar en el subterráneo
-dentro de un mes. Sabiendo que dicho medio de transporte utiliza un esquema de tarifas
-decrecientes se solicita desarrolar una función que reciba como parámetro la cantidad de viajes
-realizados en un determinado mes y devuelva el total gastado en viajes. Realizar también un
-programa para verificar el comportamiento de la función. """
+""" Una persona desea llevar el control de los gastos realizados al viajar en el subterráneo dentro de un mes. Sabiendo que dicho medio de transporte utiliza un esquema de tarifas decrecientes se solicita desarrolar una función que reciba como parámetro la cantidad de viajes realizados en un determinado mes y devuelva el total gastado en viajes. Realizar también un programa para verificar el comportamiento de la función. """
 
 """
 * Esquema de tarifas =
@@ -13,26 +9,31 @@ programa para verificar el comportamiento de la función. """
     | Más de 40            | 40% de descuento sobre la tarifa máxima |
 """
 
-def totalGastado(viajes):
-    """ Recibe la cantidad de viajes realizados y devuelve el total gastado en esos viajes teniendo en cuenta un esquema de tarifas decrecientes """ 
-    tarifaEstandar = 58
-    totalGastado = 0
-    contadorViajes = viajes
-    while contadorViajes > 40:
-        totalGastado = (tarifaEstandar * 0.6) + totalGastado
-        contadorViajes = contadorViajes - 1 
-    while 31 <= contadorViajes <= 40:
-        totalGastado = (tarifaEstandar * 0.7) + totalGastado
-        contadorViajes = contadorViajes - 1
-    while 21 <= contadorViajes <= 30:
-        totalGastado = (tarifaEstandar * 0.8) + totalGastado
-        contadorViajes = contadorViajes - 1
-    while 1 <= contadorViajes <= 20:
-        totalGastado = tarifaEstandar + totalGastado
-        contadorViajes = contadorViajes - 1
-    return totalGastado
+# Funicones
+def calcularGastos(viajes):
+    total = 0
+    for x in range(viajes):
+        print(x)
+        if (x+1) < 21:
+            total = total + 58 
+        elif 20 < (x+1) < 31:
+            total = total + (58 * 0.80)
+        elif 30 < (x+1) < 41:
+            total = total + (58 * 0.70)
+        else:
+            total = total + (58 * 0.60)
+    return total
 
-#programa principal
-inicio = totalGastado(44)
-print("El total gastado en viajes es de $", inicio)
-# 100% = 58 | 80% =  46,40 | 70% = 40,60 | 60% = 34,80
+def ingresar():
+    while True:
+        a = int(input("¿Cuántos viajes realizaste? = "))
+        if a <= 0:
+            print("Debes ingresar números mayores a 0.")
+            continue
+        else:
+            return a
+        
+# Programa
+cantidad = ingresar()
+gastos = calcularGastos(cantidad)
+print(f"En los últimos 30 días has gastado ${gastos}.")
